@@ -20,32 +20,29 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module ProgramCounter(pc_in, pc_out, rst, clck, pc_write);
+module ProgramCounter(pc_in, pc_out, rst, clk);
 
-    input [5:0] pc_in;
-    input clck;
-    input rst;
-    input pc_write;
-    output reg [5:0] pc_out;
+    input  pc_in;
+    input  clk;
+    input  rst;
+    output pc_out;
     
-    
+    wire [5:0] pc_in;
+    wire       clk;
+    wire       rst;
+    reg [5:0]  pc_out;
+     
     initial begin
-        pc_out <= 6'b000000;
+        pc_out <= 6'h000000;
     end
     
-    always @(posedge clck)
+    always @(posedge clk)
     begin
-        if(rst == 1)
-        begin
-               pc_out <= 6'b000000;
-        end
-        else
-        begin
-               if (pc_write == 1)
-               begin
-                    pc_out <= pc_in;
-                end
-         end
+        if(rst == 1) begin
+            pc_out <= 6'h000000;
+        end else begin
+            pc_out <= pc_in;
+        end       
     end
 
            

@@ -21,12 +21,15 @@
 
 
 module PC_Adder(pc_addIn, pc_addOut);
-    input [6:0] pc_addIn;
-    output reg [6:0] pc_addOut;
+    input pc_addIn;
+    output pc_addOut;
     
-    always@(pc_addIn)
+    wire [5:0] pc_addIn;
+    reg  [5:0] pc_addOut;
+    
+    always@*
     begin
-        pc_addOut <= pc_addIn + 6'b000001;
+        pc_addOut = pc_addIn + 6'b000001;
     end
     
 endmodule
