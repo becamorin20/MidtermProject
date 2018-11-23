@@ -36,24 +36,30 @@ module Controller(Inst, imm, ALUopsel, MUXsel, RegWrite, rs, rd, rt);
     reg [5:0] rs;
     reg [5:0] rd;
     
+    
     reg [3:0] ALUopsel;
     reg MUXsel;
     reg RegWrite;
     
     always @*
     begin
-        imm <= Inst[8:0];
-        rt <= Inst[14:9];
-        rs <= Inst[24:19];
-        rd <= Inst[30:25];
+        //imm = Inst[8:0];
         
-        ALUopsel<= Inst[18:15]; 
-        MUXsel <= Inst[31];
+        assign imm = {{7{Inst[8]}},Inst[8:0]};
+            
+       
+        
+        rt = Inst[14:9];
+        rs = Inst[24:19];
+        rd = Inst[30:25];
+        
+        ALUopsel = Inst[18:15]; 
+        MUXsel = Inst[31];
         
         if (ALUopsel == 4'b0000) begin
-            RegWrite <=0;
+            RegWrite = 0;
         end else begin
-            RegWrite <=1;
+            RegWrite = 1;
         end
    end
         
