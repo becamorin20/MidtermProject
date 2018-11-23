@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 11/15/2018 02:30:19 PM
+// Create Date: 11/22/2018 12:13:32 PM
 // Design Name: 
 // Module Name: SignExtend
 // Project Name: 
@@ -20,23 +20,16 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module SignExtend(
-    input [14:0] imm,
-    output [31:0] ext_imm
-    );
+module SignExtend(imm, ext_imm);
     
-    //wire [14:0] temp_imm;
-    reg [31:0] ext_out;
+    input [15:0] imm;
+    output ext_imm;
     
-    assign ext_imm = ext_out;
+    reg [32:0] ext_imm;
     
-    always @ (imm) begin 
-    if (imm[14] == 1'b1)begin
-        ext_out = {17'b11111111111111111, imm};
-        end 
-    else begin
-        ext_out = {17'b00000000000000000, imm};
-        end 
+    always @*
+    begin
+        assign ext_imm = {{16{imm[15]}},imm[15:0]};
     end
     
 endmodule
