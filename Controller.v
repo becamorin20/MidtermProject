@@ -33,8 +33,8 @@ module Controller(Inst, imm, ALUopsel, MUXsel, RegWrite, rs, rd, rt);
     
     reg [15:0] imm;
     reg [5:0] rt;
-    reg [5:0] rs;
     reg [5:0] rd;
+    reg [5:0] rs;
     
     
     reg [3:0] ALUopsel;
@@ -50,8 +50,8 @@ module Controller(Inst, imm, ALUopsel, MUXsel, RegWrite, rs, rd, rt);
        
         
         rt = Inst[14:9];
-        rs = Inst[24:19];
-        rd = Inst[30:25];
+        rd = Inst[24:19];
+        rs = Inst[30:25];
         
         ALUopsel = Inst[18:15]; 
         MUXsel = Inst[31];
