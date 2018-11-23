@@ -33,13 +33,13 @@ module ProgramCounter(pc_in, pc_out, rst, clk);
     reg [5:0]  pc_out;
      
     initial begin
-        pc_out <= 6'h000000;
+        pc_out <= 6'b000000;
     end
     
     always @(posedge clk)
     begin
         if(rst == 1) begin
-            pc_out <= 6'h000000;
+            pc_out <= 6'b000000;
         end else begin
             pc_out <= pc_in;
         end       
