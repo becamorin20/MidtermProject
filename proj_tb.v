@@ -26,7 +26,7 @@ wire equal, carry, overflow;
 // Initialize all variables
 initial begin        
   $display ("time\t clk rst enable pc_out");	
-  $monitor ("%g\t %b   %b     %b      %b", 
+  $monitor ("%g\t %b   %b     %b      %d", 
 	  $time, clk, rst, enable, pc_out);	
   clk = 1;       // initial value of clock
   rst = 0;       // initial value of reset
