@@ -68,6 +68,7 @@ top  Top (
 
 .operandB (operandB),
 
+
 .equal (equal),
 .carry (carry), 
 .overflow (overflow)

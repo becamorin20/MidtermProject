@@ -20,9 +20,10 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module ALU(operandA, operandB, ALUoutput, carry, overflow, equal, ALUopsel);
+module ALU(ALUopsel, MUXsel ,operandA, operandB, ALUoutput, carry, overflow, equal);
     
     input ALUopsel;
+    input MUXsel;
     input [31:0] operandA;
     input [31:0] operandB;
     output [31:0] ALUoutput;
@@ -111,13 +112,22 @@ always @* begin
 
     4'b1001: //shift left
         begin
-            {carry, ALUoutput} = operandA << 1; //i am assuming that it wants to shift it left once
-            overflow = (ALUoutput[31] ^ operandA[31]);
+            if(MUXsel) begin
+                {carry, ALUoutput} = operandB << 1; //i am assuming that it wants to shift it left once
+                overflow = (ALUoutput[31] ^ operandB[31]);
+            end else begin
+                {carry, ALUoutput} = operandA << 1; //i am assuming that it wants to shift it left once
+                overflow = (ALUoutput[31] ^ operandA[31]);
+            end
         end  
         
     4'b1011: // MOV
         begin
-            ALUoutput = operandA;
+            if(MUXsel) begin
+                ALUoutput = operandB;
+            end else begin
+                ALUoutput = operandA;
+            end
             carry = 0;
             overflow = 0;
         end 

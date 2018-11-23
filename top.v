@@ -109,13 +109,14 @@ Mux1 mux1(
 );
 
 ALU alu(
-.ALUopsel (ALUopsel),
-.operandA (RD2),
-.operandB (operandB),
+.ALUopsel  (ALUopsel),
+.MUXsel    (MUXsel),
+.operandA  (RD1),
+.operandB  (operandB),
 .ALUoutput (WD),
-.equal (equal),
-.carry (carry), 
-.overflow (overflow)
+.equal     (equal),
+.carry     (carry), 
+.overflow  (overflow)
 );
 
 endmodule
